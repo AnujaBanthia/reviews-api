@@ -10,17 +10,19 @@ Rails.application.routes.draw do
       resources :reviews, only: [:create, :index, :update, :destroy, :show]
     end
     
+    resources :reviews, only: [:index, :show]
+
     resources :users, only: [:show] do
       resources :reviews, only: [:index]
     end
 
     #user profile
-    get 'profile', action: :show, controller: 'users'
+    #get 'profile', action: :show, controller: 'users'
 
 
     #comments
     resources :reviews, only: [:show] do
-      resources :comments
+      resources :comments, only: [:create, :index, :update, :destroy, :show]
     end
 
     #login
